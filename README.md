@@ -1,309 +1,223 @@
-# Ustaad AI — Your Personal Multilingual AI Teacher
+# AI Instructor — Your Personal Multilingual AI Teacher
 
-Ustaad AI is a premium student-learning MVP for Grades 1–10. Students can ask questions in English, Urdu, or Roman Urdu, receive step-by-step explanations, use voice learning, upload homework for AI vision checking, generate assignments, save lessons, manage files, and track learning progress.
+## Introduction
 
-## Project overview
+Ustaad AI is an AI-powered multilingual learning platform designed to work as a personal digital teacher for students from Grades 1–10.
 
-The application is intentionally split into a **JavaScript-only core**:
+It provides an interactive learning environment where students can ask questions, learn concepts, practice subjects, check homework, generate assignments, track learning progress, and interact with AI using text and voice.
 
-- **Frontend:** React + Vite + Tailwind CSS + custom premium CSS
-- **Backend:** Node.js + Express REST APIs
-- **AI:** Groq-hosted open models
-- **AI generation:** Groq chat completion API
-- **Homework vision:** Groq multimodal input for images
-- **Voice:** browser Speech Recognition + Speech Synthesis for the MVP
-- **Database:** MongoDB Atlas is an optional production persistence layer
-- **Deployment:** Vercel frontend + Node-compatible backend; optional Streamlit showcase wrapper
-- **CI/CD:** GitHub Actions build/check workflow
+Ustaad AI is designed to make learning more personalized, accessible, interactive, and student-friendly by supporting English, Urdu, and Roman Urdu.
 
-> Important: this MVP uses the configured Groq model for generation. It does not claim live web search or custom RAG in the free-tier submission build.
+---
 
+## Overview
 
-## Main features
+Ustaad AI combines modern web technologies and generative AI to create a complete digital learning experience for students.
 
-### Public experience
-- Home / landing page
-- About page
-- Subjects page
-- Contact page
-- Login / Sign Up
-- Premium dark navy + cream visual system with lemon, pista, falsa and tea-pink accents
+The platform provides:
 
-### Student dashboard
-- Home
-- Chat with AI
-- Voice Learning
-- Homework Checker
-- Assignment Builder
-- My Progress
-- Saved Lessons
-- My Files
-- Subjects
-- Settings
-- Light/dark theme
+- AI-powered educational conversations
+- Multilingual learning support
+- Grade-based learning for Grades 1–10
+- Subject-based learning
+- Text-based AI tutoring
+- Voice learning and interaction
+- Homework checking
+- Assignment generation
+- Quiz and practice support
+- Progress tracking
+- Saved lessons and learning content
+- Student settings and personalization
+- File and image-based learning support
 
-### AI tutor
-- Grade selector: 1–10
-- Mathematics, English, Computer Science
-- English, Urdu, Roman Urdu
-- Step-by-step teaching prompts
-- Multilingual generation through the configured Groq model
-- File attachment in chat for image questions
-- Translation of the latest answer
+The system is designed with a modern web architecture where the frontend provides the user experience, the backend handles application logic and AI communication, and the AI service is securely accessed through backend environment variables.
 
-### Voice learning
-- Browser speech recognition for student input
-- Browser speech synthesis for AI output
-- Voice output can be enabled/disabled
-- Selected language is used for speech locale where the browser supports it
+---
 
-### Homework checker
-- PNG/JPG/WEBP upload
-- AI vision analysis
-- Correct / incorrect / partial / unclear result states
-- Correct answer and teaching explanation
-- Unclear handwriting is explicitly marked instead of guessed
+## Purpose
+
+The main purpose of Ustaad AI is to provide students with an accessible personal AI teacher that can support their learning anytime.
+
+The project aims to:
+
+- Make AI-assisted education easier to access
+- Provide personalized explanations according to student needs
+- Support students from Grades 1–10
+- Make difficult concepts easier to understand
+- Support multiple languages for better accessibility
+- Help students with homework and assignments
+- Provide interactive learning through text and voice
+- Encourage independent learning and practice
+- Keep useful learning content organized for students
+
+Ustaad AI is intended to act as a learning assistant that supports students alongside their regular educational studies.
+
+---
+
+## Features
+
+### AI Personal Teacher
+
+Students can interact with an AI teacher to ask questions, understand concepts, request explanations, and receive educational guidance.
+
+### Multilingual Learning
+
+The platform supports:
+
+- English
+- Urdu
+- Roman Urdu
+
+Students can communicate with the AI according to their preferred language.
+
+### Grades 1–10
+
+The platform supports educational learning for students from Grade 1 through Grade 10.
+
+### Subjects
+
+Ustaad AI provides subject-based learning support, including:
+
+- Mathematics
+- English
+- Computer Science
+
+The platform is designed so additional subjects can be added in the future.
+
+### AI Chat
+
+Students can have interactive conversations with the AI teacher and ask follow-up questions to understand topics more deeply.
+
+### Voice Learning
+
+The platform supports voice-based learning interaction.
+
+Students can use voice input and can enable or disable AI voice responses according to their preference.
+
+### Homework Checker
+
+Students can provide homework or questions for AI-assisted checking and explanation.
+
+The system can help identify mistakes and explain concepts so students can learn from them.
 
 ### Assignments
-- Topic
-- Difficulty
-- Number of questions
-- Grade and language context
-- Personalized student details
-- Generated assignment preview
-- DOC export
-- Browser print-to-PDF workflow
 
-## Architecture
+Students can generate educational assignments based on selected topics and learning requirements.
 
-```text
-Student
-   ↓
-React + Vite + Tailwind/CSS
-   ↓ REST/JSON + multipart upload
-Node.js + Express
-   ├── Groq chat completion API
-   │      └── No Google/Gemini dependency in the local free-tier build
-   ├── Groq multimodal chat
-   │      └── Homework images
-   └── MongoDB Atlas (optional production persistence)
-```
+Assignments can also be prepared in downloadable document formats.
 
-The browser never receives the Groq API key. The key belongs in `backend/.env` and is read by Node.js.
+### Quizzes and Practice
 
-## AI provider and free-tier setup
+The platform supports educational practice and quiz-style learning to help students reinforce concepts.
 
-The submission build uses a server-side **Groq API** configuration so the local
-MVP can be tested without putting an AI credential in the browser. The backend
-supports normal chat generation and image-based homework analysis through the
-configured Groq models.
+### Progress Tracking
 
-This build intentionally does **not** advertise Google Search grounding as an
-active feature. That keeps the free-tier configuration honest and avoids making
-the application depend on a paid/restricted grounding entitlement.
+Students can monitor their learning activity and progress through the dashboard.
 
-## Local setup
+### Saved Lessons
 
-### Requirements
-- Node.js 20+
-- npm
-- A Groq API key with access to the selected Groq model
+Useful lessons and learning content can be saved so students can return to them later.
 
-Python is **not required for the main application**.
+### Student Personalization
 
-### 1. Backend
+Students can manage their account settings, preferred language, learning preferences, and other personal settings.
 
-```powershell
-cd backend
-npm install
-copy .env.example .env
-notepad .env
-```
+### File and Image Learning Support
 
-Set:
+The platform can work with supported student-provided files and images for educational tasks such as homework assistance and question understanding.
 
-```env
-PORT=5000
-CLIENT_URL=http://localhost:5173
-GROQ_API_KEY=YOUR_GROQ_KEY
-GROQ_MODEL=openai/gpt-oss-20b
-GROQ_VISION_MODEL=qwen/qwen3.8-27b
-ALLOW_DEMO_FALLBACK=false
-JWT_SECRET=change-this
-MONGODB_URI=
-```
+---
 
-Start:
+## Tools & Technologies
 
-```powershell
-npm start
-```
+### Frontend
 
-### 2. Frontend
+- JavaScript
+- React
+- Vite
+- HTML5
+- CSS3
+- Tailwind CSS
 
-Open a second terminal:
+### Backend
 
-```powershell
-cd frontend
-npm install
-npm run dev
-```
+- Node.js
+- Express.js
+- REST APIs
 
-Open the Vite URL, normally `http://localhost:5173`.
+### Artificial Intelligence
 
-### 3. Verify backend health
+- Generative AI
+- Groq API
+- AI-powered conversational tutoring
+- Multilingual AI interaction
+- AI-assisted homework and assignment support
+- Voice-based AI interaction
 
-Open:
+### Database & Data
+
+- MongoDB
+- Persistent application data
+- Learning and user-related data management
+
+### Voice & File Processing
+
+- Browser-based voice interaction
+- Speech-to-text support
+- Text-to-speech support
+- Image and file-based learning workflows
+
+### Development & Deployment
+
+- Git
+- GitHub
+- Vercel
+- Streamlit
+- Docker
+- GitHub Actions
+
+---
+
+## Project Architecture
+
+Ustaad AI follows a modular full-stack architecture consisting of the frontend, backend, AI integration, data layer, and deployment components.
 
 ```text
-http://localhost:5000/api/health
-```
-
-It should show the selected model and AI configuration status.
-
-## AI access troubleshooting
-
-If the backend reports a provider/API-key error, verify the `GROQ_API_KEY`,
-model names and account access in `backend/.env`, then restart the Node server.
-The frontend cannot fix a provider-side access restriction.
-
-## Security notes
-
-- Never put `GROQ_API_KEY` in `frontend/.env`.
-- Never commit `backend/.env`.
-- Use a strong `JWT_SECRET` in production.
-- Use HTTPS in production.
-- Configure a real MongoDB Atlas database for persistent accounts/chats/files.
-- Add rate limiting and a production authentication provider before public SaaS launch.
-- Keep upload size/type restrictions enabled.
-
-## Production persistence
-
-The current submission MVP keeps many demo preferences/chat/file references in the browser's local storage so the UI remains usable without a database. MongoDB is wired as an optional backend connection point. For a full SaaS release, add MongoDB schemas for:
-
-- users
-- conversations/messages
-- saved lessons
-- assignments/quizzes
-- homework analyses
-- uploaded-file metadata
-- progress events
-
-## Deployment
-
-Recommended:
-
-```text
-GitHub
- ├── frontend → Vercel
- ├── backend  → Render/Railway/another Node host
- └── streamlit → Streamlit Community Cloud (optional showcase shell)
-```
-
-### Vercel
-
-Set the Vercel project root directory to `frontend`.
-
-Build command:
-
-```text
-npm run build
-```
-
-Output directory:
-
-```text
-dist
-```
-
-Environment variable:
-
-```text
-VITE_API_URL=https://YOUR-BACKEND.example.com
-```
-
-### Node backend
-
-Deploy the `backend` folder to a Node-compatible host and set:
-
-```text
-PORT=5000
-GROQ_API_KEY=...
-GROQ_MODEL=openai/gpt-oss-20b
-CLIENT_URL=https://YOUR-VERCEL-APP.vercel.app
-JWT_SECRET=...
-MONGODB_URI=...
-```
-
-### Streamlit
-
-The `streamlit/` directory is only an optional showcase wrapper around the React app. Streamlit itself requires a Python runtime, but the **core Ustaad AI application does not**.
-
-## GitHub
-
-From the project root:
-
-```bash
-git init
-git add .
-git commit -m "Build Ustaad AI multilingual teacher MVP"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/ustaad-ai.git
-git push -u origin main
-```
-
-## CI/CD
-
-`.github/workflows/ci.yml` checks the Node backend syntax and builds the React frontend on push/pull request.
-
-## API summary
-
-| Endpoint | Purpose |
-|---|---|
-| `GET /api/health` | Backend status |
-| `POST /api/auth/signup` | Demo/MVP signup |
-| `POST /api/auth/login` | Demo/MVP login |
-| `POST /api/ai/chat` | Grounded AI tutoring + optional file |
-| `POST /api/ai/translate` | Translate an answer |
-| `POST /api/homework/analyze` | AI homework vision checking |
-| `POST /api/assignments/generate` | Assignment generation |
-| `POST /api/quizzes/generate` | Quiz generation |
-
-## Tech stack requested for the project
-
-JavaScript, HTML5, CSS3, React, Vite, Tailwind CSS, Node.js, Express.js, REST APIs, MongoDB, generative AI, Groq, browser voice APIs, CDN-ready frontend assets, GitHub Actions CI/CD, SaaS-ready architecture and Vercel/Streamlit deployment options.
-
-## MVP boundary
-
-This is a submission-ready MVP foundation rather than a fully audited commercial SaaS. The real Groq integration, multimodal homework route, voice UI, assignment generation, public pages and dashboard are wired. Production-grade authentication, persistent MongoDB schemas, object storage, rate limiting, billing, monitoring and a true always-on Live API voice agent should be completed before a public launch.
-
-
-## Student account and chat controls
-
-The dashboard includes:
-- New chat
-- Delete current chat
-- Separate local chat history per account
-- Language and grade preferences
-- Password change in Settings
-- Add account
-- Switch between saved accounts on the same device
-- Remove a saved account from the device
-- Voice output on/off
-- Light/dark mode with dark-mode legibility fixes
-
-## Project purpose
-
-Ustaad AI is designed as a practical multilingual study companion for school
-students. The goal is to make explanations easier to understand, support
-practice and homework review, and keep common learning workflows in one
-student-friendly interface.
-
-## Submission security checklist
-
-Before pushing to GitHub:
-1. Never commit `backend/.env`.
-2. Keep only `backend/.env.example` with placeholder values.
-3. Keep API keys server-side.
-4. Confirm `.gitignore` excludes `.env` and `node_modules`.
-5. Add deployment environment variables only in the hosting provider dashboard.
+                         ┌─────────────────────┐
+                         │       Student       │
+                         │   Web / Browser     │
+                         └──────────┬──────────┘
+                                    │
+                                    ▼
+                         ┌─────────────────────┐
+                         │      Frontend       │
+                         │ React + Vite +      │
+                         │ Tailwind CSS        │
+                         └──────────┬──────────┘
+                                    │
+                              REST API Requests
+                                    │
+                                    ▼
+                         ┌─────────────────────┐
+                         │       Backend       │
+                         │ Node.js + Express   │
+                         │ REST API Layer      │
+                         └───────┬─────┬───────┘
+                                 │     │
+                    ┌────────────┘     └─────────────┐
+                    ▼                                ▼
+          ┌──────────────────┐             ┌──────────────────┐
+          │    Groq AI API   │             │     MongoDB      │
+          │ Generative AI    │             │ Application Data │
+          │ AI Conversations │             │ User/Learning    │
+          └──────────────────┘             └──────────────────┘
+                                 │
+                                 ▼
+                       ┌─────────────────────┐
+                       │   Learning Services │
+                       │ Homework            │
+                       │ Assignments         │
+                       │ Quizzes             │
+                       │ Progress            │
+                       │ Saved Lessons       │
+                       └─────────────────────┘
