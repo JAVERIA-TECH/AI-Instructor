@@ -178,46 +178,55 @@ The platform can work with supported student-provided files and images for educa
 
 ---
 
-## Project Architecture
+ ## Project Architecture
 
-Ustaad AI follows a modular full-stack architecture consisting of the frontend, backend, AI integration, data layer, and deployment components.
+The project is organized into separate frontend, backend, data, documentation, and deployment components.
 
 ```text
-                         ┌─────────────────────┐
-                         │       Student       │
-                         │   Web / Browser     │
-                         └──────────┬──────────┘
-                                    │
-                                    ▼
-                         ┌─────────────────────┐
-                         │      Frontend       │
-                         │ React + Vite +      │
-                         │ Tailwind CSS        │
-                         └──────────┬──────────┘
-                                    │
-                              REST API Requests
-                                    │
-                                    ▼
-                         ┌─────────────────────┐
-                         │       Backend       │
-                         │ Node.js + Express   │
-                         │ REST API Layer      │
-                         └───────┬─────┬───────┘
-                                 │     │
-                    ┌────────────┘     └─────────────┐
-                    ▼                                ▼
-          ┌──────────────────┐             ┌──────────────────┐
-          │    Groq AI API   │             │     MongoDB      │
-          │ Generative AI    │             │ Application Data │
-          │ AI Conversations │             │ User/Learning    │
-          └──────────────────┘             └──────────────────┘
-                                 │
-                                 ▼
-                       ┌─────────────────────┐
-                       │   Learning Services │
-                       │ Homework            │
-                       │ Assignments         │
-                       │ Quizzes             │
-                       │ Progress            │
-                       │ Saved Lessons       │
-                       └─────────────────────┘
+ustaad-ai-complete/
+│
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+│
+├── backend/
+│   ├── src/
+│   │   └── server.js
+│   ├── .env.example
+│   ├── Dockerfile
+│   ├── package.json
+│   └── package-lock.json
+│
+├── data/
+│   └── knowledge/
+│       └── README.md
+│
+├── docs/
+│   ├── API.md
+│   ├── ARCHITECTURE.md
+│   └── DEPLOYMENT.md
+│
+├── frontend/
+│   ├── src/
+│   │   ├── main.jsx
+│   │   └── style.css
+│   ├── .env.example
+│   ├── Dockerfile
+│   ├── index.html
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── postcss.config.js
+│   ├── tailwind.config.js
+│   ├── vercel.json
+│   └── vite.config.js
+│
+├── streamlit/
+│   ├── .env.example
+│   ├── requirements.txt
+│   └── streamlit_app.py
+│
+├── .gitignore
+├── README.md
+├── docker-compose.yml
+├── package.json
+└── package-lock.json
