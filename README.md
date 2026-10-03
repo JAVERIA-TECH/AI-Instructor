@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Ustaad AI is an AI-powered multilingual learning platform designed to work as a personal digital teacher for students from Grades 1–10.
+Ustaad AI is an AI-powered multilingual learning platform designed to work as a personal digital teacher for students.
 
 It provides an interactive learning environment where students can ask questions, learn concepts, practice subjects, check homework, generate assignments, track learning progress, and interact with AI using text and voice.
 
