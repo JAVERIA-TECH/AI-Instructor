@@ -70,19 +70,6 @@ The platform supports:
 
 Students can communicate with the AI according to their preferred language.
 
-### Grades 1–10
-
-The platform supports educational learning for students from Grade 1 through Grade 10.
-
-### Subjects
-
-Ustaad AI provides subject-based learning support, including:
-
-- Mathematics
-- English
-- Computer Science
-
-The platform is designed so additional subjects can be added in the future.
 
 ### AI Chat
 
