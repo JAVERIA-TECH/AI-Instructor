@@ -3,7 +3,7 @@ import streamlit as st
 
 st.set_page_config(page_title="Ustaad AI", page_icon="🎓", layout="wide")
 
-app_url = os.getenv("USTAAD_APP_URL", "http://localhost:5173")
+app_url = os.getenv("USTAAD_APP_URL", "https://ai-instructor-weld.vercel.app")
 
 st.markdown("# 🎓 Ustaad AI")
 st.markdown("### Your Personal Multilingual AI Teacher")
