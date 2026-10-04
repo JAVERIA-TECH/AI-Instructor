@@ -10,7 +10,9 @@ import {
 } from 'lucide-react';
 import './style.css';
 
-const API = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API =
+  import.meta.env.VITE_API_URL ||
+  'https://ai-instructor-2z8v.vercel.app';
 
 const subjects = ['Mathematics', 'English', 'Computer Science'];
 const languages = ['English', 'Urdu', 'Roman Urdu'];
@@ -705,17 +707,17 @@ function Auth({ onLogin, setPage }) {
             className="demo"
             onClick={() =>
               (() => {
-            const demo = {
-              name: 'Demo Student',
-              email: 'demo@ustaad.ai',
-              grade: 8,
-              language: 'Roman Urdu'
-            };
-            const token = 'demo-local-token';
-            localStorage.setItem('ustaadToken', token);
-            saveAccountSession(demo, token);
-            onLogin(demo);
-          })()
+                const demo = {
+                  name: 'Demo Student',
+                  email: 'demo@ustaad.ai',
+                  grade: 8,
+                  language: 'Roman Urdu'
+                };
+                const token = 'demo-local-token';
+                localStorage.setItem('ustaadToken', token);
+                saveAccountSession(demo, token);
+                onLogin(demo);
+              })()
             }
           >
             Use Demo Dashboard
